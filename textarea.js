@@ -2,7 +2,6 @@ textarea = {
   textarea: null,
   init: function() {
     this.textarea = document.getElementsByTagName('textarea')[0];
-    this.textarea.focus();
     this.load();
   },
   load: function() {
