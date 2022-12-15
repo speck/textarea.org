@@ -1,15 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>&lt;textarea /&gt;</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./textarea.css" type="text/css" media="screen" />
-  </head>
-  <body onload="textarea.init()">
-    <textarea autofocus onkeyup="textarea.save()"></textarea>
-    <script src="./textarea.js" type="text/javascript"></script>
-  </body>
+    <head>
+        <title>&lt;textarea /&gt;</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            textarea {
+                border: 0;
+                font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+                font-size: 1em;
+                line-height: 1.5em;
+                outline: none;
+                padding: 1em;
+                position: absolute;
+                    top: 0; left: 0; right: 0; bottom: 0;
+                resize: none;
+                text-align: left;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                body {
+                    background-color: #073642;
+                }
+
+                textarea {
+                    background-color: #073642;
+                    color: #93A1A1;
+                    font-weight: 400;
+                }
+            }
+
+            @media (prefers-color-scheme: light) {
+                body {
+                    background-color: #EEE;
+                }
+
+                textarea {
+                    background-color: #FDF6E3;
+                    color: #586E75;
+                    font-weight: 700;
+                }
+            }
+        </style>
+    </head>
+    <body onload="textarea.init()">
+        <textarea autofocus onkeyup="textarea.save()"></textarea>
+        <script>
+            window.textarea = {
+                textarea: null,
+                init: function() {
+                    this.textarea = document.querySelector('textarea');
+                    this.load();
+                },
+                load: function() {
+                    this.textarea.value = localStorage.getItem('text');
+                },
+                save: function() {
+                    localStorage.setItem('text', this.textarea.value)
+                }
+            }
+        </script>
+    </body>
 </html>
